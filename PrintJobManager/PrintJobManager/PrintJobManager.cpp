@@ -58,6 +58,7 @@ int main() {
 
 			}
 			if (y == 1999999) {
+				allPrinter->getPrinter();
 				allPrinter->GetPrintJobsCollection("ss");
 				y = 0;
 			}
