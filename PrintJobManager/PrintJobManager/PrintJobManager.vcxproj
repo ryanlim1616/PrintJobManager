@@ -147,7 +147,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventSink.cpp" />
+    <ClCompile Include="PrinterZone.cpp" />
     <ClCompile Include="PrintJobManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EventSink.h" />
+    <ClInclude Include="PrinterZone.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
