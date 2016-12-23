@@ -73,7 +73,7 @@ void PrinterZone::GetPrintJobsCollection(string printerName) {
 	{
 		string test;
 		MarshalString(prntJob->Properties["Document"]->Value->ToString(), test);
-		cout << test << "\n";
+	//	cout << test << "\n";
 		//System.String jobName = prntJob.Properties["Name"].Value.ToString();
 
 		////Job name would be of the format [Printer name], [Job ID]
@@ -101,10 +101,10 @@ void PrinterZone::GetPrintJobsCollection(string printerName, bool pause) {
 	{
 		string test;
 		MarshalString(prntJob->Properties["Document"]->Value->ToString(), test);
-		cout << test << "\n";
+	//	cout << test << "\n";
 
 		ManagementClass^ mc = gcnew ManagementClass("Win32_Service");
-		ManagementBaseObject^ inParams = mc->GetMethodParameters("Pause");
+		ManagementBaseObject^ inParams = mc->GetMethodParameters("Create");
 		InvokeMethodOptions^ newhh = gcnew InvokeMethodOptions;
 
 	 
