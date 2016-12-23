@@ -5,6 +5,7 @@
 #include <comdef.h>
 #include <Wbemidl.h>
 #include <string>
+#include <vector>
 
 
 #using <System.dll>
@@ -24,12 +25,15 @@ using namespace std;
 class PrinterZone {
 private:
 	int a = 0;
+	vector<string> printerName;
+	
 public:
 	PrinterZone() { };
 	void getPrinter();
 	void MarshalString(String ^ s, string& os);
 	void MarshalString(String ^ s, wstring& os);
 	void GetPrintJobsCollection(string printerName);
+	void GetPrintJobsCollection(string printerName, bool pause);
 };
 
 #endif

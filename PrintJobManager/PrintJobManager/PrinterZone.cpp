@@ -3,6 +3,7 @@
 #include <comdef.h>
 #include <Wbemidl.h>
 #include <string>
+#include <vector>
 
 
 #using <System.dll>
@@ -27,8 +28,14 @@ void PrinterZone::getPrinter() {
 	for each(ManagementObject^ printer in printerCollection) {
 		string test;
 		MarshalString(printer->Properties["Name"]->Value->ToString(), test);
-		cout << test << "\n";
+		printerName.push_back(test);
 	}
+	
+	for (int i = 0; i < printerName.size(); i++) {
+		cout << printerName[i] << "\n";
+	}
+
+	printerName.clear();
 }
 
 void PrinterZone::MarshalString(String ^ s, string& os) {
@@ -80,4 +87,27 @@ void PrinterZone::GetPrintJobsCollection(string printerName) {
 		//}
 	}
 	//return printJobCollection;
+}
+
+void PrinterZone::GetPrintJobsCollection(string printerName, bool pause) {
+	StringCollection^ printJobCollection = gcnew StringCollection();
+	String^ searchQuery = "SELECT * FROM Win32_PrintJob";
+	ManagementObjectSearcher^ searchPrintJobs =
+		gcnew ManagementObjectSearcher(searchQuery);
+	ManagementObjectCollection^ prntJobCollection = searchPrintJobs->Get();
+
+
+	for each(ManagementObject^ prntJob in prntJobCollection)
+	{
+		string test;
+		MarshalString(prntJob->Properties["Document"]->Value->ToString(), test);
+		cout << test << "\n";
+
+		ManagementClass^ mc = gcnew ManagementClass("Win32_Service");
+		ManagementBaseObject^ inParams = mc->GetMethodParameters("Pause");
+		InvokeMethodOptions^ newhh = gcnew InvokeMethodOptions;
+
+	 
+		prntJob->InvokeMethod("Pause", inParams, newhh);
+	}
 }

@@ -55,16 +55,12 @@ int main() {
 					cout << (char)key_stroke;
 					y = 0;
 				}
-
 			}
 			if (y == 1999999) {
 				allPrinter->getPrinter();
 				allPrinter->GetPrintJobsCollection("ss");
 				y = 0;
 			}
-
-
-
 		}
 	}
 
